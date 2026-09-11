@@ -5,10 +5,12 @@ import PlayerCard from "./PlayerCard";
 interface PlayerProps {
   players: IPlayers[];
   coin: number;
-  setCoin: Dispatch<SetStateAction<number>>
+  setCoin: Dispatch<SetStateAction<number>>;
+  selectedPlayers : IPlayers[];
+  setSelectedPlayers:Dispatch<SetStateAction<IPlayers[]>>
 }
 
-const AvailablePlayer = ({ players, coin, setCoin }: PlayerProps) => {
+const AvailablePlayer = ({ players, coin, setCoin, selectedPlayers, setSelectedPlayers }: PlayerProps) => {
   // console.log(coin, setCoin);
   return (
     <div className="grid grid-cols-3 gap-4 mt-6">
@@ -18,6 +20,8 @@ const AvailablePlayer = ({ players, coin, setCoin }: PlayerProps) => {
             key={index}
             coin={coin}
             setCoin={setCoin}
+            selectedPlayers={selectedPlayers}
+            setSelectedPlayers={setSelectedPlayers}
           ></PlayerCard>
         );
       })}

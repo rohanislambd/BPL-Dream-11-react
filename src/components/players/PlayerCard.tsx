@@ -7,9 +7,12 @@ interface IPlayerCardProps {
   player: IPlayers;
   coin: number;
   setCoin: Dispatch<SetStateAction<number>>;
+  selectedPlayers : IPlayers[];
+  setSelectedPlayers:Dispatch<SetStateAction<IPlayers[]>>
 }
 
-const PlayerCard = ({ player, coin, setCoin }: IPlayerCardProps) => {
+
+const PlayerCard = ({ player, coin, setCoin, selectedPlayers, setSelectedPlayers }: IPlayerCardProps) => {
   const [isSelected, setIsSelected] = useState(false);
   console.log(coin, setCoin);
 
@@ -32,6 +35,10 @@ const PlayerCard = ({ player, coin, setCoin }: IPlayerCardProps) => {
     } else {
       toast.error("Coin is not enough");
     }
+
+    // selected player logic
+    setSelectedPlayers([...selectedPlayers, player])
+
   };
 
   return (
