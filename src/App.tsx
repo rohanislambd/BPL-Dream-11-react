@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import Banner from "./components/Banner"
 import Nav from "./components/Nav"
 import Players from "./components/players/Players";
@@ -11,13 +11,19 @@ const playersPromise = async ():Promise<IPlayers[]> =>{
 }
 
 function App() {
+    const [coin , setCoin] = useState(1500)
+
   // console.log(playersPromise());
   return (
     <>
-    <Nav></Nav>
+    <Nav coin={coin}></Nav>
     <Banner></Banner>
      <Suspense>
-       <Players playersPromise ={playersPromise()}></Players>
+       <Players 
+       playersPromise ={playersPromise()} 
+       coin={coin}
+       setCoin={setCoin}
+       ></Players>
      </Suspense>
     </>
   )
